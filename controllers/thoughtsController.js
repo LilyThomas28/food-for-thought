@@ -1,0 +1,1 @@
+// export functions for handling thought requests
