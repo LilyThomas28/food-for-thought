@@ -36,6 +36,3 @@ thoughtSchema.virtual('reactionCount').get(function () {
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
-
-// createdAt:
-// Use a getter method to format the timestamp on query
