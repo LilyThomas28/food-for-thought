@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-// const {  } = require('./data');
+const { getRandomUser, getRandomThoughts, getRandomEmail } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -13,9 +13,9 @@ connection.once('open', async () => {
     await User.deleteMany({});
 
     const users = [];
-    const thoughts = getRandomThoughts(2);
+    const thoughts = getRandomThoughts(10);
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         const username = getRandomUser();
         const email = getRandomEmail();
         users.push({
