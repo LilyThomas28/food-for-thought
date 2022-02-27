@@ -5,7 +5,7 @@ module.exports = {
     // All route functions
     // GET all users
     getAllUsers(req, res) {
-        User.Find()
+        User.find()
             .select('-__v')
             .populate('thoughts')
             .then((users) => res.json(users))
