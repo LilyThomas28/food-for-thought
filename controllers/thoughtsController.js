@@ -7,9 +7,9 @@ module.exports = {
     // GET all thoughts
     getAllThoughts(req, res) {
         Thought.find()
-            .then((thoughts) => {
-                console.log(thoughts);
-                return res.json(thoughts);
+            .then((thought) => {
+                console.log(thought);
+                return res.json(thought);
             })
             .catch((err) => {
                 console.log(err);
@@ -20,10 +20,10 @@ module.exports = {
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.id })
             .select("-__v")
-            .then((course) =>
-                !course
+            .then((thought) =>
+                !thought
                     ? res.status(404).json({ message: 'No course with that ID' })
-                    : res.json(course)
+                    : res.json(thought)
                 )
             .catch((err) => res.status(500).json(err));
     },
@@ -33,7 +33,7 @@ module.exports = {
             .then((thought) => {
                 User.findOneAndUpdate(
                     { username: req.body.username },
-                    { $addToSet: { thoughts: thought._id } },
+                    { $addToSet: { thoughts: thought.id } },
                     { new: true }
                 ).then((newThought) => {
                     console.log(newThought);
