@@ -18,7 +18,7 @@ router.route('/')
     .post(createNewUser);
 
 // /api/users/:userId
-router.route('/:userId')
+router.route('/:id')
     // GET a single user by its _id and populated thought and friend data
     .get(getSingleUser)
     // PUT to update a user by its _id

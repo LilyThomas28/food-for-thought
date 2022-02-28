@@ -5,15 +5,25 @@ module.exports = {
     // All route functions
     // GET all users
     getAllUsers(req, res) {
-        User.find()
-            .select('-__v')
-            .populate('thoughts')
-            .then((users) => res.json(users))
-            .catch((err) => res.status(500).json(err));
+        User.find({})
+            .populate('thoughts', {
+                thoughtText: 1,
+                username: 1,
+                createdAt: 1
+            })
+            .then((users) => {
+                console.log(users);
+                res.json(users);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err)
+            });
     },
     // GET a single user by _id
     getSingleUser(req, res) {
-        User.findOne({ _id: req.params.userId })
+        User.findOne({ _id: req.params.id })
+            .select('-__v')
             .populate('thoughts')
             .then((user) =>
                 !user
